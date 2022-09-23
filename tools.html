@@ -1,0 +1,195 @@
+<html>
+    <title>widgets/Tools</title>
+    <link rel="icon" type="image/x-icon" href="img/w1.png">
+    <head>
+        <style>
+            .header{
+	position: sticky;
+	z-index: 999;
+	top: 0;
+	background-color: rgba(0,0,0,0.3);
+
+}
+.tool{
+    color: #fff;
+}
+.tool div{
+    border: 2px solid white;
+    margin: 20px;
+
+}
+nav{
+	width: 100%;
+	
+
+	padding: 20px 8%;
+	display: flex;
+	align-items: center ;
+	justify-content: space-between;
+}
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins',sans-serif;
+}body{
+	/* background-image: url("img/news.jpg") ; */
+	background-image: url("https://w.wallhaven.cc/full/8x/wallhaven-8x56oo.jpg");
+	background-attachment: fixed;
+}
+nav .logo{
+	width: 80px;
+}
+nav ul li{
+	list-style: none;
+	display: inline-block;
+	margin-left: 40px;
+}
+nav ul li a{
+	text-decoration: none;
+	color: #fff;
+	font-size: 17px;
+	padding: 7px;
+	border-radius: 5px;
+	transition: 0.3;
+}
+nav ul li a:hover{
+	background-color: rgb(255, 255, 255,0.3);
+}
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins',sans-serif;
+}
+.tool div{
+    height: 200px;
+    width: 70%;
+    border-radius: 15px;
+}
+.tool div h2{
+    background-color:rgba(195, 248, 255,.7);
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 15px;
+}
+input{
+    padding: 3px;
+
+}
+.tool div button{
+    margin-bottom: 20px;
+    padding: 3px;
+    cursor: pointer;
+}
+#question{
+    margin-bottom: 10px;
+}
+        </style>
+    </head>
+    <body>
+        <div class="header" id="myHeader">  
+            <nav>
+              <div class="head">
+                    <img src="img/w1.png" class="logo">
+              
+            </div>
+            
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li><a href="weather.html">weather</a></li>
+                        <li><a href="news.html">article</a></li>
+                        <li><a href="tools.html">tools</a></li>
+                        <!-- <li><a href="login.html">sign in</a></li> -->
+        
+                    </ul>
+                </nav>
+           
+        </div>
+        <center>
+        <div class="tool">
+        <div class="bit">
+            <h2>bit coin</h2>
+            <button class="submit2">Get Data</button>
+            <p id="price"></p>
+            <p id="last"></p>
+
+            
+        </div>
+        <div class="gen">
+            <h2>gender identifier</h2>
+            <input type="text" class="input_text" placeholder="Enter any name">
+            <button class="submit1">Get Data</button>
+            <p id="name"></p>
+            <p id="gend"></p>
+            
+        </div>
+        
+        <div class="fun">
+            <h2>Jokes</h2>
+            <p id="question"></p>
+            <p id="answer"></p>
+
+        </div>
+        </div>
+    </center>
+
+    </body>
+    <script>
+var button2=document.querySelector(".submit2");
+button2.addEventListener("click", function(){
+fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+.then(response => response.json())
+.then(data => {
+var price = data ['bpi']['USD']['rate_float'];
+var last = data ['time']['updated'];
+//   main.innerHTML = nameValue;
+//   input.value ="";
+//   price.innerHTML="Bit Price :  "+data ['time']['updated']+"Rupees";
+   price=
+   document.getElementById("price").innerHTML="Bit Coin Price  : ₹"+Math.floor(price*79.74);
+    document.getElementById("last").innerHTML="Last Updated  : "+last;
+})
+// .catch(err => alert("ERROR!"));
+})
+
+
+
+var input=document.querySelector(".input_text");
+var button1=document.querySelector(".submit1");
+button1.addEventListener("click", function(){
+fetch('https://api.genderize.io/?name='+input.value)
+.then(response => response.json())
+.then(data => {
+var gende = data ['gender'];
+var name = data ['name'];
+var prob=data['probability'];
+//   main.innerHTML = nameValue;
+//   input.value ="";
+//   price.innerHTML="Bit Price :  "+data ['time']['updated']+"Rupees";
+   console.log(price);
+   document.getElementById("name").innerHTML="Gender  : "+gende;
+    document.getElementById("gend").innerHTML="Probality  : "+prob;
+})
+// .catch(err => alert("ERROR!"));
+})
+
+document.addEventListener("click", function(){
+fetch('https://official-joke-api.appspot.com/random_joke')
+.then(response => response.json())
+.then(data => {
+var question = data ['setup'];
+var answer = data ['punchline'];
+
+//   main.innerHTML = nameValue;
+//   input.value ="";
+//   price.innerHTML="Bit Price :  "+data ['time']['updated']+"Rupees";
+//    console.log(price);
+   document.getElementById("question").innerHTML=question;
+    document.getElementById("answer").innerHTML="Punchline  : "+answer;
+})
+// .catch(err => alert("ERROR!"));
+})
+
+    </script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style1.css">
+	<link rel="icon" type="image/x-icon" href="img/w1.png">
+
+  </head>
+  <body>
+    <div class="log">
+      <img src="img/w1.png">
+      <h2>idgets</h2>
+    </div>
+<div class="login-box">
+  <h1>Login</h1>
+  <div class="textbox">
+    <i class="fas fa-user"></i>
+    <input type="text" placeholder="Username" id="user">
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-lock"></i>
+    <input type="password" placeholder="Password" id="pass">
+  </div>
+  <p id ="res"></p>
+  <input type="button" class="btn" value="Sign in" onclick="redir()">
+</div>
+<script>
+  function redir(){
+  var x=document.getElementById("user").value;
+  var y=document.getElementById("pass").value;
+    if(x=="727721euit141@skcet.ac.in" && y=="euit141"){
+      window.location.href="index.html";
+    }
+    if(x=="727721euit131@skcet.ac.in" && y=="euit131"){
+      window.location.href="index.html";
+      
+  }
+  if(x=="727721euit138@skcet.ac.in" && y=="euit138"){
+      window.location.href="index.html";
+  }
+  if(x=="727721euit176@skcet.ac.in" && y=="euit176"){
+      window.location.href="index.html";
+  }
+  else{
+      document.getElementById("res").innerHTML="*invalid user id or password";
+  }
+}
+  
+</script>
+  </body>
+</html>
